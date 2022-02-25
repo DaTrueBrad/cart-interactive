@@ -2,17 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import CartIcon from './CartIcon'
 
-function ProductCard({data, update, setUpdate}) {
-  const addToCart = (id) => {
-    let object = {
-      userID: 1,
-      productID: id
-    }
-    axios.post('http://localhost:4000/api/addToCart', object)
-    .then((res) => {
-      setUpdate(++update)
-    })
-  }
+function ProductCard({data, addToCart}) {
 
   return (
     <div className='product-card'>

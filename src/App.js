@@ -5,6 +5,7 @@ import Cart from './components/Cart';
 
 function App() {
   const [update, setUpdate] = useState(0)
+  
   return (
     <div className="App">
       <Products update={update} setUpdate={setUpdate}/>

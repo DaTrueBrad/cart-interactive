@@ -1,28 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ItemCard from './ItemCard'
 
 function Cart({update}) {
   const [data, setData] = useState([])
+
   let currentUser = 1
 
-  const removeItem = (id) => {
-    axios.delete(`http://localhost:4000/api/userCart/${id}`)
-    .then((res) => {
-      getCart()
-    })
-  }
-
-  const getCart = () => {
+  const getData = () => {
     axios.get(`http://localhost:4000/api/userCart/${currentUser}`)
     .then((res) => {
-      console.log(res.data)
       setData(res.data)
     })
   }
 
+  const removeItem = (id) => {
+    axios.delete(`http://localhost:4000/api/userCart/${id}`)
+    .then((res) => {
+      getData()
+    })
+  }
+
   useEffect(() => {
-    getCart()
+    getData()
   }, [update])
 
   return (
@@ -30,7 +30,7 @@ function Cart({update}) {
       <h2>My Cart</h2>
       {data.map((element, index) => {
         return <ItemCard data={element} key={index} removeItem={removeItem}/>
-      }) }
+      })}
     </div>
 
   )
