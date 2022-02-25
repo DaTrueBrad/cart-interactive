@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import ProductCard from './ProductCard'
 
-function Products() {
+function Products({update, setUpdate}) {
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -14,10 +14,10 @@ function Products() {
   }, [])
   
   return (
-    <div>
+    <div className='page-container'>
       <h2>Products Available</h2>
       {data.map((element, index) => {
-        return <ProductCard data={element} key={index} />
+        return <ProductCard data={element} key={index} update={update} setUpdate={setUpdate}/>
       }) }
     </div>
   )
